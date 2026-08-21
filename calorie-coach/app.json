@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Innoligo Calorie Coach",
+    "slug": "innoligo-calorie-coach",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to photograph your meals for AI calorie estimation.",
+        "NSPhotoLibraryUsageDescription": "Used to select a photo of your meal for AI calorie estimation."
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE"]
+    }
+  }
+}
