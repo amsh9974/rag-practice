@@ -1,0 +1,10 @@
+{
+  "document_type": "payment_record",
+  "payment_reference": "PAY-2026-3391",
+  "invoice_number": "INV-2026-0142",
+  "amount_paid": 24420.00,
+  "payment_date": "2026-07-18",
+  "paid_to_sort_code": "20-33-45",
+  "paid_to_account_number": "88774411",
+  "payment_method": "bank_transfer"
+}
