@@ -1,0 +1,13 @@
+{
+  "document_type": "purchase_order",
+  "po_number": "PO-2026-0098",
+  "issue_date": "2026-06-20",
+  "supplier_name": "Meridian Oak Facilities Ltd",
+  "customer_name": "Innoligo Demo Client Ltd",
+  "line_items": [
+    { "description": "Quarterly facilities maintenance", "quantity": 1, "unit_price": 18500.00 },
+    { "description": "Emergency call-out (July)", "quantity": 2, "unit_price": 450.00 }
+  ],
+  "approved_total": 19400.00,
+  "currency": "GBP"
+}

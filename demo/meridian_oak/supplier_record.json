@@ -1,0 +1,10 @@
+{
+  "document_type": "supplier_master_record",
+  "supplier_name": "Meridian Oak Facilities Ltd",
+  "registered_address": "12 Oak Court, Leeds LS1 4PQ",
+  "vat_number": "GB123456789",
+  "on_file_bank_sort_code": "40-11-22",
+  "on_file_bank_account_number": "55221199",
+  "on_file_since": "2021-03-01",
+  "last_verified": "2024-01-10"
+}

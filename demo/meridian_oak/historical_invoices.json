@@ -1,0 +1,46 @@
+[
+  {
+    "document_type": "invoice",
+    "invoice_number": "INV-2026-0142",
+    "issue_date": "2026-07-02",
+    "supplier_name": "Meridian Oak Facilities Ltd",
+    "supplier_address": "12 Oak Court, Leeds LS1 4PQ",
+    "supplier_vat_number": "GB123456789",
+    "customer_name": "Innoligo Demo Client Ltd",
+    "po_number": "PO-2026-0098",
+    "currency": "GBP",
+    "line_items": [
+      { "description": "Quarterly facilities maintenance", "quantity": 1, "unit_price": 18500.00 }
+    ],
+    "subtotal": 18500.00,
+    "vat_rate": 0.20,
+    "vat_amount": 3700.00,
+    "total": 22200.00,
+    "bank_account_name": "Meridian Oak Facilities Ltd",
+    "bank_sort_code": "40-11-22",
+    "bank_account_number": "55221199",
+    "payment_terms": "30 days"
+  },
+  {
+    "document_type": "invoice",
+    "invoice_number": "INV-2026-0091",
+    "issue_date": "2026-04-11",
+    "supplier_name": "Meridian Oak Facilities Ltd",
+    "supplier_address": "12 Oak Court, Leeds LS1 4PQ",
+    "supplier_vat_number": "GB123456789",
+    "customer_name": "Innoligo Demo Client Ltd",
+    "po_number": "PO-2026-0051",
+    "currency": "GBP",
+    "line_items": [
+      { "description": "Quarterly facilities maintenance", "quantity": 1, "unit_price": 18200.00 }
+    ],
+    "subtotal": 18200.00,
+    "vat_rate": 0.20,
+    "vat_amount": 3640.00,
+    "total": 21840.00,
+    "bank_account_name": "Meridian Oak Facilities Ltd",
+    "bank_sort_code": "40-11-22",
+    "bank_account_number": "55221199",
+    "payment_terms": "30 days"
+  }
+]
