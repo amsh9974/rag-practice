@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innoligo · Microsoft 365 Security &amp; Cost Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#100f0d;--card:#1b1916;--card2:#23201a;--ink:#f1ede4;--muted:#9b9384;--line:#34302a;
+    --gold:#d8a64e;--gold-soft:#e8be78;--red:#d6433d;--red-deep:#b5322d;
+    --green:#5fae72;--amber:#e0a445;--crit:#e0655f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;color-scheme:dark;
+    background-image:radial-gradient(circle at 0 0,rgba(216,166,78,.07),transparent 32%),radial-gradient(circle at 100% 100%,rgba(214,67,61,.06),transparent 36%);}
+  .wrap{max-width:880px;margin:0 auto;padding:26px 20px 60px;}
+
+  header{display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line);padding-bottom:16px;}
+  .logo{height:52px;width:auto;flex:none;display:block;border-radius:6px;box-shadow:0 3px 14px rgba(0,0,0,.4);}
+  .brand .tag{font-family:"Fraunces",serif;font-style:italic;color:var(--gold-soft);font-size:13px;}
+  .htitle{margin-left:auto;text-align:right;}
+  .htitle .t{font-size:13px;font-weight:600;}
+  .htitle .s{font-size:10px;color:var(--muted);letter-spacing:.3px;}
+
+  .privacy{display:flex;align-items:center;gap:8px;background:rgba(95,174,114,.12);border:1px solid rgba(95,174,114,.3);border-radius:8px;padding:8px 13px;margin-top:16px;font-size:11.5px;color:#8fd0a0;}
+  .privacy b{color:#aee0ba;}
+  .privacy .dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none;box-shadow:0 0 0 3px rgba(95,174,114,.22);}
+
+  .steps{display:flex;gap:6px;margin:20px 0 18px;}
+  .step{flex:1;text-align:center;font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;font-weight:600;color:var(--muted);padding:9px 4px;border-radius:7px;background:var(--card);border:1px solid var(--line);}
+  .step .n{display:inline-flex;width:17px;height:17px;border-radius:50%;background:var(--line);color:var(--ink);align-items:center;justify-content:center;font-size:10px;margin-right:5px;}
+  .step.active{color:var(--ink);border-color:var(--gold);box-shadow:0 2px 0 var(--gold);}
+  .step.active .n{background:var(--gold);color:#1c1a17;}
+  .step.done .n{background:var(--green);color:#0f0f0f;}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;box-shadow:0 16px 40px rgba(0,0,0,.35);}
+  .panel.hidden{display:none;}
+  .panel h2{font-family:"Fraunces",serif;font-size:20px;font-weight:600;letter-spacing:-.3px;}
+  .panel .lead{color:var(--muted);font-size:13px;margin-top:5px;margin-bottom:20px;}
+
+  label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px;}
+  input[type=text],input[type=number],select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;color:var(--ink)!important;background:var(--card2)!important;color-scheme:dark;-webkit-appearance:none;appearance:none;}
+  input[type=number]{-moz-appearance:textfield;}
+  input::placeholder{color:#6f685d;}
+  input:focus,input:active,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,166,78,.18);background:#2b2720!important;color:var(--ink)!important;}
+  input:-webkit-autofill,input:-webkit-autofill:focus,input:-webkit-autofill:hover{-webkit-text-fill-color:var(--ink);caret-color:var(--ink);box-shadow:0 0 0 1000px var(--card2) inset!important;}
+  select option{background:#23201a;color:var(--ink);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:16px;}
+
+  .lic{margin-top:6px;}
+  .lic-head,.lic-row{display:grid;grid-template-columns:1.7fr .9fr 1fr 1fr;gap:10px;align-items:center;}
+  .lic-head{font-size:9.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:600;padding:0 2px 7px;border-bottom:1.5px solid var(--gold);}
+  .lic-row{padding:7px 2px;border-bottom:1px solid var(--line);}
+  .lic-row .nm{font-size:12.5px;font-weight:600;}
+  .lic-row .nm small{display:block;font-weight:400;color:var(--muted);font-size:10px;}
+  .lic-row input{padding:7px 9px;font-size:13px;text-align:center;}
+  .rightsize{margin-top:20px;background:rgba(216,166,78,.07);border:1px solid var(--line);border-radius:9px;padding:15px 16px;}
+  .rightsize h3{font-family:"Fraunces",serif;font-size:14px;font-weight:600;margin-bottom:4px;}
+  .rs-row{display:grid;grid-template-columns:1fr 90px;gap:12px;align-items:center;margin-top:11px;}
+  .rs-row span{font-size:12px;}
+  .rs-row span small{color:var(--muted);display:block;font-size:10.5px;}
+
+  .q{padding:13px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;}
+  .q:last-child{border-bottom:none;}
+  .q .qt{font-size:13px;font-weight:500;}
+  .q .qr{font-size:10px;color:var(--gold-soft);margin-top:2px;letter-spacing:.2px;}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex:none;}
+  .seg button{border:none;background:var(--card2);padding:7px 13px;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;color:var(--muted);border-left:1px solid var(--line);}
+  .seg button:first-child{border-left:none;}
+  .seg button.yes.on{background:var(--green);color:#0f1a12;}
+  .seg button.part.on{background:var(--amber);color:#1c1305;}
+  .seg button.no.on{background:var(--crit);color:#fff;}
+
+  .nav{display:flex;justify-content:space-between;margin-top:24px;gap:12px;}
+  .btn{font-family:inherit;font-size:13px;font-weight:600;padding:12px 24px;border-radius:9px;border:none;cursor:pointer;transition:.15s;}
+  .btn-primary{background:var(--gold);color:#1c1a17;}
+  .btn-primary:hover{background:var(--gold-soft);}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .btn-ghost:hover{color:var(--ink);border-color:var(--ink);}
+  .btn-gold{background:var(--gold);color:#1c1a17;}
+  .btn-gold:hover{background:var(--gold-soft);}
+
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px;}
+  .stat{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;align-items:center;gap:18px;}
+  .ring{width:96px;height:96px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;position:relative;}
+  .ring::after{content:"";position:absolute;inset:11px;background:var(--card2);border-radius:50%;}
+  .ring .v{position:relative;z-index:1;font-family:"Fraunces",serif;font-size:28px;font-weight:700;}
+  .stat .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:600;}
+  .stat .band{font-family:"Fraunces",serif;font-size:17px;font-weight:600;margin-top:3px;}
+  .stat .big{font-family:"Fraunces",serif;font-size:34px;font-weight:700;line-height:1;color:var(--gold-soft);}
+  .stat .sub{font-size:11.5px;color:var(--muted);margin-top:5px;}
+
+  .res-sec{margin-top:8px;}
+  .res-sec h3{font-family:"Fraunces",serif;font-size:16px;font-weight:600;margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+  .res-sec h3 .c{font-size:11px;background:var(--gold);color:#1c1a17;border-radius:20px;padding:2px 9px;font-family:"IBM Plex Sans";font-weight:600;}
+  .finding{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start;}
+  .sev{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:5px;white-space:nowrap;margin-top:1px;}
+  .sev.high{background:rgba(224,101,95,.18);color:var(--crit);}
+  .sev.med{background:rgba(224,164,69,.18);color:var(--amber);}
+  .sev.low{background:rgba(155,147,132,.16);color:var(--muted);}
+  .finding .ft{font-size:13px;font-weight:600;}
+  .finding .fd{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .finding .fr{font-size:10px;color:var(--gold-soft);margin-top:3px;font-weight:500;}
+  .savecard{background:rgba(95,174,114,.1);border:1px solid rgba(95,174,114,.28);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+  .savecard .l{font-size:12.5px;}
+  .savecard .l small{display:block;color:var(--muted);font-size:11px;}
+  .savecard .a{font-family:"Fraunces",serif;font-weight:600;font-size:16px;color:#8fd0a0;white-space:nowrap;}
+
+  .cta{margin-top:26px;background:linear-gradient(180deg,rgba(216,166,78,.14),rgba(216,166,78,.04));border:1px solid var(--gold);border-radius:12px;padding:24px 26px;text-align:center;}
+  .cta h3{font-family:"Fraunces",serif;font-size:19px;font-weight:600;}
+  .cta p{font-size:12.5px;color:var(--muted);margin:7px auto 16px;max-width:480px;}
+  .cta a{display:inline-block;background:var(--gold);color:#1c1a17;text-decoration:none;font-weight:600;font-size:13px;padding:12px 26px;border-radius:9px;}
+  .cta a:hover{background:var(--gold-soft);}
+  .cta .em{display:block;margin-top:12px;font-size:11px;color:var(--muted);}
+
+  .disclaimer{font-size:10px;color:var(--muted);margin-top:20px;line-height:1.5;border-top:1px solid var(--line);padding-top:12px;}
+  .err{color:var(--crit);font-size:12px;margin-top:8px;display:none;}
+
+  .hero{text-align:center;padding:30px 24px 26px;}
+  .eyebrow{display:inline-block;font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-soft);border:1px solid var(--line);padding:5px 13px;border-radius:20px;margin-bottom:18px;font-weight:600;}
+  .hero h1{font-family:"Fraunces",serif;font-size:34px;line-height:1.12;font-weight:600;letter-spacing:-.6px;max-width:600px;margin:0 auto;}
+  .hero .sub{color:var(--muted);font-size:15px;line-height:1.55;max-width:560px;margin:15px auto 26px;}
+  .btn-hero{background:var(--gold);color:#1c1a17;font-family:inherit;font-weight:600;font-size:15px;padding:15px 34px;border:none;border-radius:10px;cursor:pointer;box-shadow:0 10px 28px rgba(216,166,78,.22);transition:.15s;}
+  .btn-hero:hover{background:var(--gold-soft);transform:translateY(-1px);}
+  .hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:600px;margin:36px auto 0;}
+  .hcard{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 14px;}
+  .hcard .ic{color:var(--gold);margin-bottom:9px;display:flex;justify-content:center;}
+  .hcard b{display:block;font-size:14px;margin-bottom:3px;}
+  .hcard span{font-size:11.5px;color:var(--muted);}
+  .hero-reg{margin-top:22px;font-size:11.5px;color:var(--muted);letter-spacing:.3px;}
+  .hero-reg b{color:var(--gold-soft);font-weight:600;}
+  @media(max-width:680px){.hero-cards{grid-template-columns:1fr;}.hero h1{font-size:26px;}}
+
+  @media print{
+    :root{--bg:#fff;--card:#fff;--card2:#fff;--ink:#1c1a17;--muted:#555;--line:#cccccc;}
+    body{background:#fff;background-image:none;color-scheme:light;}
+    .steps,.nav,.privacy,.no-print{display:none!important;}
+    .panel{box-shadow:none;border:none;padding:0;}
+    .ring::after{background:#fff;}
+    .cta{background:#fff;border:1.5px solid #1c1a17;}
+    .stat .big{color:#1c1a17;}
+  }
+  @media(max-width:680px){.grid2,.stat-row{grid-template-columns:1fr;}.lic-head,.lic-row{grid-template-columns:1.5fr .8fr .9fr;}.lic-head span:nth-child(4),.lic-row>div:nth-child(4){display:none;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <img class="logo" src="data:image/webp;base64,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" alt="Innoligo">
+    <div class="brand">
+      <div class="tag">Big-Tech Power. Boutique Strategy.</div>
+    </div>
+    <div class="htitle">
+      <div class="t">Microsoft 365 Security &amp; Cost Audit</div>
+      <div class="s">Self-assessment · indicative results</div>
+    </div>
+  </header>
+
+  <div class="privacy">
+    <span class="dot"></span>
+    <span><b>Your data never leaves this device.</b> This tool runs entirely in your browser — nothing is uploaded, stored, or sent to Innoligo.</span>
+  </div>
+
+  <div id="hero" class="hero no-print">
+    <span class="eyebrow">Free 3-minute self-assessment</span>
+    <h1>Is your Microsoft&nbsp;365 secure — and are you overpaying?</h1>
+    <p class="sub">See your security posture score and the licence spend you could reclaim, framed against your regulator. No sign-up, no sales call — and everything runs in your browser.</p>
+    <button class="btn-hero" onclick="startCheck()">Start my free check →</button>
+    <div class="hero-cards">
+      <div class="hcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div>
+        <b>3 minutes</b><span>No sign-up, no obligation</span>
+      </div>
+      <div class="hcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></div>
+        <b>100% private</b><span>Runs only in your browser</span>
+      </div>
+      <div class="hcard">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V4"></path><path d="M4 20h16"></path><rect x="8" y="12" width="3" height="5"></rect><rect x="14" y="8" width="3" height="9"></rect></svg></div>
+        <b>Score + £ savings</b><span>Mapped to FCA · SRA · NHS</span>
+      </div>
+    </div>
+    <div class="hero-reg">Framed against <b>FCA · DORA · SRA · NHS DSPT · Cyber Essentials</b></div>
+  </div>
+
+  <div id="tool" style="display:none">
+  <div class="steps">
+    <div class="step active" data-s="0"><span class="n">1</span>Profile</div>
+    <div class="step" data-s="1"><span class="n">2</span>Licensing</div>
+    <div class="step" data-s="2"><span class="n">3</span>Security</div>
+    <div class="step" data-s="3"><span class="n">4</span>Results</div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="panel" data-panel="0">
+    <h2>Tell us about your organisation</h2>
+    <p class="lead">We use this only to tailor your report and the regulatory framing of findings.</p>
+    <div class="grid2">
+      <div class="field"><label>Organisation name</label><input type="text" id="org" placeholder="e.g. Thames Wealth Partners"></div>
+      <div class="field"><label>Total staff / mailboxes</label><input type="number" id="staff" min="0" placeholder="e.g. 48"></div>
+    </div>
+    <div class="field"><label>Regulated sector</label>
+      <select id="sector">
+        <option value="financial">Financial services — FCA / DORA</option>
+        <option value="legal">Legal — SRA</option>
+        <option value="healthcare">Healthcare — NHS DSPT</option>
+        <option value="other">Other / general — Cyber Essentials</option>
+      </select>
+    </div>
+    <div class="nav"><span></span><button class="btn btn-primary" onclick="go(1)">Continue → Licensing</button></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="panel hidden" data-panel="1">
+    <h2>Your Microsoft 365 licensing</h2>
+    <p class="lead">Enter assigned seats and any you believe are unused/inactive. Unit prices are indicative GBP/user/month — adjust to your agreement.</p>
+    <div class="lic">
+      <div class="lic-head"><span>Licence</span><span>£/user/mo</span><span>Assigned</span><span>Unused</span></div>
+      <div id="licRows"></div>
+    </div>
+    <div class="rightsize">
+      <h3>Right-sizing opportunities</h3>
+      <p class="lead" style="margin:0;">Over-provisioned users are the biggest hidden cost. Estimate how many could move down a tier.</p>
+      <div class="rs-row"><span>E5 users not using E5-only features <small>Defender / Audit / Phone → downgrade to E3</small></span><input type="number" id="rs_e5" min="0" value="0"></div>
+      <div class="rs-row"><span>E3 users who could use Business Premium <small>Only if total &lt; 300 staff</small></span><input type="number" id="rs_e3" min="0" value="0"></div>
+    </div>
+    <div class="nav"><button class="btn btn-ghost" onclick="go(0)">← Back</button><button class="btn btn-primary" onclick="go(2)">Continue → Security</button></div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="panel hidden" data-panel="2">
+    <h2>Security posture check</h2>
+    <p class="lead">Twelve controls that matter most to regulators and insurers. Answer honestly — partial counts as partial.</p>
+    <div id="qList"></div>
+    <p class="err" id="qErr">Please answer every question to see your results.</p>
+    <div class="nav"><button class="btn btn-ghost" onclick="go(1)">← Back</button><button class="btn btn-gold" onclick="computeResults()">See my results →</button></div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="panel hidden" data-panel="3">
+    <div id="resHead">
+      <h2 id="resTitle">Your audit summary</h2>
+      <p class="lead" id="resSub"></p>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="ring" id="ring"><span class="v" id="scoreV">0</span></div>
+        <div><div class="lbl">Security posture</div><div class="band" id="scoreBand">—</div><div class="sub" id="scoreSub"></div></div>
+      </div>
+      <div class="stat">
+        <div><div class="lbl">Annual savings identified</div><div class="big" id="saveV">£0</div><div class="sub" id="saveSub"></div></div>
+      </div>
+    </div>
+
+    <div class="res-sec">
+      <h3>Cost optimisation <span class="c" id="costCount">0</span></h3>
+      <div id="costFindings"></div>
+    </div>
+
+    <div class="res-sec">
+      <h3>Priority security findings <span class="c" id="secCount">0</span></h3>
+      <div id="secFindings"></div>
+    </div>
+
+    <div class="cta no-print">
+      <h3>This is an indicative self-assessment.</h3>
+      <p>A verified Innoligo audit connects securely to your tenant to confirm these figures, surface what self-assessment can't see, and deliver a board-ready remediation plan mapped to your regulator.</p>
+      <a href="mailto:amitsh@innoligo.com?subject=M365%20Verified%20Audit%20enquiry">Book your verified audit — £2,950</a>
+      <span class="em">Or print this summary to keep · amitsh@innoligo.com</span>
+    </div>
+
+    <div class="disclaimer">
+      Results are an indicative estimate generated from self-reported inputs and do not constitute a verified security or licensing audit, regulatory advice, or assurance of compliance. Licence prices are illustrative and exclude VAT and discounting. © Innoligo. Microsoft 365 is a trademark of Microsoft Corporation; Innoligo is an independent partner.
+    </div>
+    <div class="nav no-print"><button class="btn btn-ghost" onclick="go(2)">← Adjust answers</button><button class="btn btn-primary" onclick="window.print()">Download / print report</button></div>
+  </div>
+  </div>
+</div>
+
+<script>
+var LICENSES = [
+  {id:'basic',   name:'Business Basic',    note:'web/mobile Office', price:5.10},
+  {id:'standard',name:'Business Standard', note:'desktop Office',    price:10.30},
+  {id:'premium', name:'Business Premium',  note:'+security suite',   price:18.10},
+  {id:'o365e3',  name:'Office 365 E3',     note:'apps, no EMS',      price:19.70},
+  {id:'m365e3',  name:'Microsoft 365 E3',  note:'apps + security',   price:33.10},
+  {id:'m365e5',  name:'Microsoft 365 E5',  note:'top tier',          price:54.70},
+  {id:'f3',      name:'Microsoft 365 F3',  note:'frontline',         price:6.30}
+];
+
+var QUESTIONS = [
+  {id:'mfa_all', w:10, t:'Multi-factor authentication is enforced for ALL users', reg:'Cyber Essentials · FCA · DORA',
+   fix:'Enforce MFA tenant-wide via Conditional Access or security defaults.'},
+  {id:'mfa_admin', w:9, t:'Admins use phishing-resistant MFA (passkeys / FIDO2)', reg:'FCA SYSC · NHS DSPT',
+   fix:'Require phishing-resistant methods for all privileged roles.'},
+  {id:'legacy', w:8, t:'Legacy authentication protocols are blocked', reg:'Cyber Essentials',
+   fix:'Block legacy auth — it bypasses MFA and is a top breach vector.'},
+  {id:'ca', w:8, t:'Conditional Access policies control risky sign-ins', reg:'DORA · FCA',
+   fix:'Deploy Conditional Access for device, location and risk-based controls.'},
+  {id:'admins', w:7, t:'Global Admin accounts are limited (≤4) and dedicated', reg:'Least privilege · NCSC',
+   fix:'Reduce standing Global Admins; use dedicated, named admin accounts.'},
+  {id:'pim', w:6, t:'Just-in-time / PIM controls privileged access', reg:'DORA ICT risk',
+   fix:'Enable Privileged Identity Management for time-bound elevation.'},
+  {id:'defender', w:7, t:'Defender for Office 365 (Safe Links / Attachments) is active', reg:'Anti-phishing',
+   fix:'Turn on Safe Links and Safe Attachments to stop malicious payloads.'},
+  {id:'dlp', w:7, t:'Data Loss Prevention policies protect sensitive data', reg:'UK GDPR · SRA confidentiality',
+   fix:'Configure DLP for client, financial and personal data.'},
+  {id:'audit', w:6, t:'Unified audit logging is enabled and retained', reg:'DORA · FCA record-keeping',
+   fix:'Enable audit logging with retention to support investigations.'},
+  {id:'backup', w:7, t:'A third-party backup protects M365 data', reg:'Operational resilience · DORA',
+   fix:'Microsoft does not back up your data — add independent backup.'},
+  {id:'sharing', w:6, t:'External sharing and guest access are controlled', reg:'Data leakage',
+   fix:'Restrict anonymous links and review guest access regularly.'},
+  {id:'devices', w:6, t:'Devices are managed and compliant (Intune)', reg:'Cyber Essentials',
+   fix:'Enrol devices in Intune and enforce compliance baselines.'}
+];
+
+var SECTOR_REG = {financial:'FCA &amp; DORA', legal:'the SRA', healthcare:'NHS DSPT', other:'Cyber Essentials'};
+var answers = {};
+
+(function build(){
+  var lr = document.getElementById('licRows');
+  LICENSES.forEach(function(l){
+    var row = document.createElement('div'); row.className='lic-row';
+    row.innerHTML =
+      '<div class="nm">'+l.name+'<small>'+l.note+'</small></div>'+
+      '<input type="number" min="0" step="0.01" id="price_'+l.id+'" value="'+l.price.toFixed(2)+'">'+
+      '<input type="number" min="0" id="asg_'+l.id+'" value="0">'+
+      '<input type="number" min="0" id="unu_'+l.id+'" value="0">';
+    lr.appendChild(row);
+  });
+  var ql = document.getElementById('qList');
+  QUESTIONS.forEach(function(q){
+    var d=document.createElement('div'); d.className='q';
+    d.innerHTML='<div><div class="qt">'+q.t+'</div><div class="qr">'+q.reg+'</div></div>'+
+      '<div class="seg" id="seg_'+q.id+'">'+
+        '<button class="yes" onclick="ans(\''+q.id+'\',1,this)">Yes</button>'+
+        '<button class="part" onclick="ans(\''+q.id+'\',0.5,this)">Partial</button>'+
+        '<button class="no" onclick="ans(\''+q.id+'\',0,this)">No</button>'+
+      '</div>';
+    ql.appendChild(d);
+  });
+})();
+
+function ans(id,val,btn){
+  answers[id]=val;
+  var seg=document.getElementById('seg_'+id);
+  Array.prototype.forEach.call(seg.children,function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  document.getElementById('qErr').style.display='none';
+}
+
+function go(s){
+  document.querySelectorAll('[data-panel]').forEach(function(p){p.classList.add('hidden');});
+  document.querySelector('[data-panel="'+s+'"]').classList.remove('hidden');
+  document.querySelectorAll('.step').forEach(function(st){
+    var i=+st.getAttribute('data-s');
+    st.classList.toggle('active',i===s);
+    st.classList.toggle('done',i<s);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startCheck(){
+  document.getElementById('hero').style.display='none';
+  document.getElementById('tool').style.display='block';
+  go(0);
+}
+
+function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
+function gbp(n){return '£'+Math.round(n).toLocaleString('en-GB');}
+
+function computeResults(){
+  if(Object.keys(answers).length < QUESTIONS.length){
+    document.getElementById('qErr').style.display='block';
+    document.getElementById('qErr').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  var priceOf={}; LICENSES.forEach(function(l){priceOf[l.id]=num('price_'+l.id);});
+  var current=0, reclaim=0, costFindings=[];
+  LICENSES.forEach(function(l){
+    var asg=num('asg_'+l.id), unu=num('unu_'+l.id);
+    var p=priceOf[l.id];
+    current += asg*p*12;
+    if(unu>0){
+      var s=unu*p*12; reclaim+=s;
+      costFindings.push({l:unu+' unused '+l.name+' licence'+(unu>1?'s':''), s:'Reclaim or reassign idle seats', a:s});
+    }
+  });
+  var rsE5=num('rs_e5'), rsE3=num('rs_e3');
+  var e5d=Math.max(0,priceOf.m365e5-priceOf.m365e3)*12*rsE5;
+  var e3d=Math.max(0,priceOf.m365e3-priceOf.premium)*12*rsE3;
+  if(rsE5>0) costFindings.push({l:rsE5+' E5 → E3 right-size', s:'Users not using E5-only features', a:e5d});
+  if(rsE3>0) costFindings.push({l:rsE3+' E3 → Business Premium', s:'Comparable security at lower cost', a:e3d});
+  var savings=reclaim+e5d+e3d;
+  var pct=current>0?Math.round(savings/current*100):0;
+
+  var got=0,max=0,secFindings=[];
+  QUESTIONS.forEach(function(q){
+    max+=q.w; got+=q.w*answers[q.id];
+    if(answers[q.id]<1){
+      var sev=q.w>=8?'high':(q.w>=6?'med':'low');
+      secFindings.push({sev:sev,w:q.w,t:q.t.replace('ALL','all'),fix:q.fix,reg:q.reg,partial:answers[q.id]===0.5});
+    }
+  });
+  var score=max>0?Math.round(got/max*100):0;
+  secFindings.sort(function(a,b){return b.w-a.w;});
+
+  var org=document.getElementById('org').value.trim()||'Your organisation';
+  var sector=document.getElementById('sector').value;
+  document.getElementById('resTitle').textContent='Audit summary — '+org;
+  document.getElementById('resSub').innerHTML='Indicative posture and savings, framed against '+SECTOR_REG[sector]+'.';
+
+  var band,col;
+  if(score>=85){band='Strong';col='var(--green)';}
+  else if(score>=65){band='Good, with gaps';col='var(--amber)';}
+  else if(score>=40){band='Needs work';col='var(--amber)';}
+  else {band='Critical exposure';col='var(--crit)';}
+  document.getElementById('scoreV').textContent=score;
+  document.getElementById('scoreBand').textContent=band;
+  document.getElementById('scoreBand').style.color=col;
+  document.getElementById('scoreSub').textContent=secFindings.length+' control gap'+(secFindings.length!==1?'s':'')+' to close';
+  document.getElementById('ring').style.background='conic-gradient('+col+' '+(score*3.6)+'deg, var(--line) 0deg)';
+  document.getElementById('scoreV').style.color=col;
+
+  document.getElementById('saveV').textContent=gbp(savings);
+  document.getElementById('saveSub').textContent=savings>0?('~'+pct+'% of current annual M365 spend ('+gbp(current)+')'):'Enter licensing data to estimate savings';
+
+  var cf=document.getElementById('costFindings');
+  document.getElementById('costCount').textContent=costFindings.length;
+  if(costFindings.length===0){cf.innerHTML='<p class="lead" style="margin:0;">No obvious waste from the figures entered — a verified audit can still surface hidden licence sprawl.</p>';}
+  else{cf.innerHTML=costFindings.map(function(f){return '<div class="savecard"><div class="l">'+f.l+'<small>'+f.s+'</small></div><div class="a">'+gbp(f.a)+'/yr</div></div>';}).join('');}
+
+  var sf=document.getElementById('secFindings');
+  document.getElementById('secCount').textContent=secFindings.length;
+  if(secFindings.length===0){sf.innerHTML='<p class="lead" style="margin:0;">Strong result — all twelve controls in place. A verified audit confirms configuration depth and catches drift.</p>';}
+  else{sf.innerHTML=secFindings.map(function(f){
+    var lbl=f.sev==='high'?'High':(f.sev==='med'?'Medium':'Low');
+    return '<div class="finding"><span class="sev '+f.sev+'">'+lbl+'</span><div><div class="ft">'+(f.partial?'Partially in place: ':'')+f.t+'</div><div class="fd">'+f.fix+'</div><div class="fr">'+f.reg+'</div></div></div>';
+  }).join('');}
+
+  go(3);
+}
+</script>
+</body>
+</html>
