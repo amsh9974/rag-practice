@@ -53,9 +53,9 @@ deliver that engine's output to a customer.
 Microsoft Graph API connectors, admin consent flows, RMM/PSA integrations,
 a mobile app, multi-currency support.
 
-None of Supabase, Stripe, or the Anthropic SDK are installed yet as of the
-initial scaffold — they get added in the slice that first needs them, not
-before.
+Supabase (`@supabase/supabase-js`) and `zod` were added in slice 1, for the
+free-estimate lead capture. Stripe and the Anthropic SDK are still not
+installed — they get added in the slice that first needs them, not before.
 
 ## Folder layout
 
