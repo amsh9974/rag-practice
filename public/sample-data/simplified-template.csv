@@ -1,0 +1,3 @@
+UserPrincipalName,DisplayName,Department,AssignedLicenses,LastActivityDate
+jane.doe@example.com,Jane Doe,Finance,MICROSOFT 365 E3,2026-08-20
+john.smith@example.com,John Smith,Operations,MICROSOFT 365 BUSINESS PREMIUM;MICROSOFT 365 BUSINESS STANDARD,2026-08-15
