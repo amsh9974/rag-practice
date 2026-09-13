@@ -120,7 +120,7 @@ export default function ScanPage() {
                   one-time 25% gain-share applies only to the savings you actually action.
                 </p>
                 <a
-                  href="mailto:hello@innoligo.com?subject=M365%20License%20Assessment"
+                  href="mailto:amitsh@innoligo.com?subject=M365%20License%20Assessment"
                   className="mt-4 inline-block rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-ink hover:bg-slate-100"
                 >
                   Book a Paid Assessment

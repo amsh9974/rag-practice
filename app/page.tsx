@@ -30,7 +30,7 @@ const PRICING_TIERS = [
       "Sets up the gain-share engagement below",
     ],
     cta: "Book an assessment",
-    href: "mailto:hello@innoligo.com?subject=M365%20License%20Assessment",
+    href: "mailto:amitsh@innoligo.com?subject=M365%20License%20Assessment",
     highlight: true,
   },
   {
@@ -45,7 +45,7 @@ const PRICING_TIERS = [
       "Typically follows directly on from the Paid Assessment",
     ],
     cta: "See a worked example",
-    href: "#pricing-example",
+    href: "#worked-example",
     highlight: false,
   },
   {
@@ -60,7 +60,7 @@ const PRICING_TIERS = [
       "Early warning before renewal / true-up dates",
     ],
     cta: "Ask about monitoring",
-    href: "mailto:hello@innoligo.com?subject=M365%20Monthly%20Monitoring",
+    href: "mailto:amitsh@innoligo.com?subject=M365%20Monthly%20Monitoring",
     highlight: false,
   },
 ];
@@ -143,7 +143,7 @@ export default function LandingPage() {
               </div>
               <p className="mt-3 text-xs text-slate-500">No tenant connection required — works from a self-service CSV export.</p>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6">
+            <div id="worked-example" className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 scroll-mt-24">
               <p className="text-sm font-medium text-slate-500">Illustrative month-1 revenue per customer</p>
               <p className="mt-2 text-3xl font-bold text-ink">{formatGbp(month1Revenue)}</p>
               <p className="mt-1 text-sm text-slate-500">
