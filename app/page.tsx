@@ -30,7 +30,7 @@ const PRICING_TIERS = [
       "Sets up the gain-share engagement below",
     ],
     cta: "Book an assessment",
-    href: "mailto:amitsh@innoligo.com?subject=M365%20License%20Assessment",
+    href: "/api/checkout",
     highlight: true,
   },
   {
