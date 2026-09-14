@@ -81,6 +81,11 @@ savings = **£5,499**.
 3. **CSP channel conflict** — the free scan only needs a self-service export, not incumbent
    CSP access; actioning changes may still need their cooperation.
 
+## Documentation
+
+- [`docs/USER_MANUAL.md`](docs/USER_MANUAL.md) — end-user instructions, GDPR/data-protection
+  details, and FAQ for the free scan and the paid tiers.
+
 ## Running it
 
 ```bash
