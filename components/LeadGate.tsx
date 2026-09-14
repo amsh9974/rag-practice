@@ -25,28 +25,46 @@ export default function LeadGate({ onUnlock }: LeadGateProps) {
         this is also how you&apos;d kick off a Paid Assessment on the same tenant.
       </p>
       <form onSubmit={submit} className="mt-4 grid sm:grid-cols-3 gap-3">
-        <input
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Your name"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm"
-        />
-        <input
-          required
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm"
-        />
-        <input
-          required
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Work email"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm"
-        />
+        <div>
+          <label htmlFor="lead-name" className="sr-only">
+            Your name
+          </label>
+          <input
+            id="lead-name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          />
+        </div>
+        <div>
+          <label htmlFor="lead-company" className="sr-only">
+            Company
+          </label>
+          <input
+            id="lead-company"
+            required
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Company"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          />
+        </div>
+        <div>
+          <label htmlFor="lead-email" className="sr-only">
+            Work email
+          </label>
+          <input
+            id="lead-email"
+            required
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Work email"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          />
+        </div>
         <button
           type="submit"
           className="sm:col-span-3 rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
