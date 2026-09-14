@@ -60,7 +60,7 @@ export default function ReportTable({ findings }: { findings: Finding[] }) {
 
   if (findings.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card text-sm text-slate-600">
         No findings against the current thresholds — either this tenant is well optimised, or try lowering the
         inactivity threshold under Assumptions.
       </div>
@@ -68,7 +68,7 @@ export default function ReportTable({ findings }: { findings: Finding[] }) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-ink">Findings ({findings.length})</h3>
         <button

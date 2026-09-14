@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { IconCheck, IconFileCheck } from "@/components/Icons";
 import { getStripe } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
@@ -41,28 +42,44 @@ export default async function AssessmentSuccessPage({
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
 
-      <main className="flex-1 bg-slate-50">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 py-16 sm:py-24">
+      <main className="relative flex-1 overflow-hidden bg-slate-50">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-grid bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black_10%,transparent_70%)]"
+        />
+        <div className="relative mx-auto max-w-2xl px-4 sm:px-6 py-16 sm:py-24">
           {details.status === "paid" ? (
-            <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-              <div className="mx-auto h-12 w-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">
-                ✓
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-10 text-center shadow-card">
+              <div className="mx-auto h-14 w-14 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center">
+                <IconCheck className="h-7 w-7" />
               </div>
-              <h1 className="mt-5 text-2xl font-bold text-ink">Payment received</h1>
-              <p className="mt-2 text-slate-600">
+              <h1 className="mt-6 text-3xl font-bold text-ink tracking-tight">Payment received</h1>
+              <p className="mt-3 text-slate-600 leading-relaxed">
                 Thanks{details.email ? ` — a receipt is on its way to ${details.email}` : ""}. Your Paid
                 Assessment
                 {details.amountPence !== null ? ` (${formatGbp(details.amountPence)})` : ""} is booked.
               </p>
-              <div className="mt-6 rounded-lg bg-slate-50 border border-slate-200 p-5 text-left text-sm text-slate-600">
-                <p className="font-medium text-ink mb-2">What happens next</p>
-                <ul className="list-disc list-inside space-y-1.5">
-                  <li>We&apos;ll email you within 1 business day to arrange the tenant usage export</li>
-                  <li>Every automated finding is re-verified against the live tenant and CSP invoice</li>
-                  <li>You get a board-ready, costed report — the basis for any Gain Share engagement after</li>
+              <div className="mt-7 rounded-xl bg-slate-50 border border-slate-200 p-6 text-left text-sm text-slate-600">
+                <p className="font-semibold text-ink mb-3 flex items-center gap-2">
+                  <IconFileCheck className="h-4 w-4 text-brand-600" />
+                  What happens next
+                </p>
+                <ul className="space-y-2.5">
+                  <li className="flex gap-2.5">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" />
+                    We&apos;ll email you within 1 business day to arrange the tenant usage export
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" />
+                    Every automated finding is re-verified against the live tenant and CSP invoice
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" />
+                    You get a board-ready, costed report — the basis for any Gain Share engagement after
+                  </li>
                 </ul>
               </div>
-              <p className="mt-6 text-xs text-slate-400">
+              <p className="mt-7 text-xs text-slate-400">
                 Questions in the meantime? Email{" "}
                 <a className="text-brand-600 hover:underline" href="mailto:amitsh@innoligo.com">
                   amitsh@innoligo.com
@@ -71,15 +88,15 @@ export default async function AssessmentSuccessPage({
               </p>
             </div>
           ) : (
-            <div className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-              <h1 className="text-2xl font-bold text-ink">We couldn&apos;t confirm this payment</h1>
-              <p className="mt-2 text-slate-600">
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-10 text-center shadow-card">
+              <h1 className="text-2xl font-bold text-ink tracking-tight">We couldn&apos;t confirm this payment</h1>
+              <p className="mt-3 text-slate-600 leading-relaxed">
                 If you completed checkout, this is most likely just a delay — check your email for a Stripe
                 receipt. If something went wrong, no charge should have gone through.
               </p>
               <a
                 href="mailto:amitsh@innoligo.com?subject=M365%20License%20Assessment%20-%20Payment%20check"
-                className="mt-6 inline-block rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700"
+                className="mt-7 inline-block rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 transition-colors"
               >
                 Contact us
               </a>
@@ -87,7 +104,7 @@ export default async function AssessmentSuccessPage({
           )}
 
           <div className="mt-8 text-center">
-            <Link href="/" className="text-sm text-brand-600 hover:underline">
+            <Link href="/" className="text-sm font-medium text-brand-600 hover:underline">
               ← Back to home
             </Link>
           </div>

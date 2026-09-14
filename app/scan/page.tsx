@@ -45,21 +45,22 @@ export default function ScanPage() {
       <SiteHeader />
 
       <main className="flex-1 bg-slate-50">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-10 space-y-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12 space-y-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-ink">Free scan</h1>
-            <p className="mt-2 text-slate-600">
+            <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide">Free scan</p>
+            <h1 className="mt-1 text-3xl sm:text-4xl font-bold text-ink tracking-tight">Find the waste in minutes</h1>
+            <p className="mt-2 text-slate-600 max-w-2xl">
               Upload a usage export or enter licenses manually. Nothing leaves your browser — this scan runs
               entirely client-side.
             </p>
           </div>
 
-          <div className="flex gap-2 text-sm">
+          <div className="inline-flex gap-1 rounded-lg bg-slate-200/60 p-1 text-sm">
             <button
               type="button"
               onClick={() => setMode("upload")}
-              className={`rounded-md px-4 py-2 font-medium ${
-                mode === "upload" ? "bg-ink text-white" : "bg-white border border-slate-300 text-ink"
+              className={`rounded-md px-4 py-2 font-medium transition-colors ${
+                mode === "upload" ? "bg-white text-ink shadow-sm" : "text-slate-600 hover:text-ink"
               }`}
             >
               Upload CSV
@@ -67,8 +68,8 @@ export default function ScanPage() {
             <button
               type="button"
               onClick={() => setMode("manual")}
-              className={`rounded-md px-4 py-2 font-medium ${
-                mode === "manual" ? "bg-ink text-white" : "bg-white border border-slate-300 text-ink"
+              className={`rounded-md px-4 py-2 font-medium transition-colors ${
+                mode === "manual" ? "bg-white text-ink shadow-sm" : "text-slate-600 hover:text-ink"
               }`}
             >
               Enter manually
@@ -111,17 +112,21 @@ export default function ScanPage() {
 
               <MethodologyPanel />
 
-              <div className="rounded-xl border border-ink bg-ink p-6 text-center">
-                <p className="text-white font-semibold">
+              <div className="relative overflow-hidden rounded-2xl bg-ink p-8 text-center">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-0 h-48 w-96 -translate-x-1/2 rounded-full bg-brand-600/30 blur-3xl"
+                />
+                <p className="relative text-white font-semibold text-lg">
                   Want these findings independently verified and turned into an action plan?
                 </p>
-                <p className="mt-1 text-slate-300 text-sm">
+                <p className="relative mt-2 text-slate-300 text-sm max-w-xl mx-auto">
                   The Paid Assessment (£499, fixed price) checks every finding against the live tenant, then a
                   one-time 25% gain-share applies only to the savings you actually action.
                 </p>
                 <a
                   href="/api/checkout"
-                  className="mt-4 inline-block rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-ink hover:bg-slate-100"
+                  className="relative mt-5 inline-block rounded-lg bg-white px-6 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-slate-100 transition-colors"
                 >
                   Book a Paid Assessment
                 </a>

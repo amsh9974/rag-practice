@@ -4,9 +4,17 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   color: #0b1220;
   background: #f7f8fb;
+  font-feature-settings: "cv11", "ss01";
+}
+
+::selection {
+  background: #b3cdff;
+  color: #0b1220;
 }

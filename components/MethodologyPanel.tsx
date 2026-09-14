@@ -1,6 +1,6 @@
 export default function MethodologyPanel() {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 space-y-4">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card text-sm text-slate-600 space-y-4">
       <h3 className="font-semibold text-ink text-base">Methodology &amp; verification</h3>
 
       <div>

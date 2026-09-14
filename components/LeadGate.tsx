@@ -18,7 +18,7 @@ export default function LeadGate({ onUnlock }: LeadGateProps) {
   }
 
   return (
-    <div className="rounded-xl border border-brand-200 bg-brand-50 p-6">
+    <div className="rounded-2xl border border-brand-200 bg-brand-50 p-6 shadow-card">
       <h3 className="font-semibold text-ink">Unlock the full per-user report</h3>
       <p className="mt-1 text-sm text-slate-600">
         Your savings summary is above. Enter your details to see the per-user evidence table and export a CSV —

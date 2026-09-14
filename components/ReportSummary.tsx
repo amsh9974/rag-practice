@@ -22,14 +22,14 @@ export default function ReportSummary({ summary }: { summary: EngineSummary }) {
     <div className="space-y-6">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((c) => (
-          <div key={c.label} className="rounded-xl border border-slate-200 bg-white p-5">
+          <div key={c.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
             <p className="text-xs text-slate-500">{c.label}</p>
             <p className={`mt-1 text-2xl font-bold ${c.accent ? "text-brand-700" : "text-ink"}`}>{c.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white p-5">
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card">
         <p className="text-sm font-medium text-ink mb-3">Savings by finding type</p>
         <div className="space-y-2">
           {breakdown.map((b) => (

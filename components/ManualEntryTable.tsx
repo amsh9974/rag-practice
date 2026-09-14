@@ -58,7 +58,7 @@ export default function ManualEntryTable({ onApply }: ManualEntryTableProps) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
       <h3 className="font-semibold text-ink">Enter licenses manually</h3>
       <p className="mt-1 text-sm text-slate-600">
         For a small tenant, list each user directly. Type license names in the license column, separated by

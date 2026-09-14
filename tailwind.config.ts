@@ -19,6 +19,16 @@ const config: Config = {
           900: "#0c275e",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(11,18,32,0.04), 0 8px 24px -12px rgba(11,18,32,0.12)",
+        "card-hover": "0 4px 12px rgba(11,18,32,0.06), 0 16px 32px -12px rgba(11,18,32,0.16)",
+      },
+      backgroundImage: {
+        grid: "linear-gradient(to right, rgba(11,18,32,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,18,32,0.05) 1px, transparent 1px)",
+      },
     },
   },
   plugins: [],

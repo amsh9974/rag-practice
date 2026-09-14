@@ -38,7 +38,7 @@ export default function UploadPanel({ onParsed }: UploadPanelProps) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
       <h3 className="font-semibold text-ink">Upload a usage export</h3>
       <p className="mt-1 text-sm text-slate-600">
         In the Microsoft 365 admin center: Reports → Usage → Active users → Export. Or use the simplified CSV

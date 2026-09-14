@@ -24,7 +24,7 @@ export default function EngineSettings({ options, onChange }: EngineSettingsProp
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
