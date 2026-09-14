@@ -51,6 +51,7 @@ export async function GET() {
           quantity: 1,
         },
       ],
+      managed_payments: { enabled: false },
       success_url: "https://example.com/success",
       cancel_url: "https://example.com/cancel",
     });

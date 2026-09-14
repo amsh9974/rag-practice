@@ -32,6 +32,9 @@ export async function GET(request: NextRequest) {
           quantity: 1,
         },
       ],
+      // This account has Stripe Managed Payments on by default, which requires a tax_code on
+      // every product. We don't use Stripe for tax collection, so opt this session out of it.
+      managed_payments: { enabled: false },
       success_url: `${origin}/assessment/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/#pricing`,
     });
